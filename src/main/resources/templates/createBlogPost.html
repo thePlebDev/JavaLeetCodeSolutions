@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>LeetCodeJava</title>
+    <meta name="description" content="Data structures and LeetCode in Java" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/createBlogPost.css" />
+</head>
+
+<body>
+<header></header>
+<div class="editorCreator">
+    <form>
+        <input type="text" id="title" name="title" placeholder="title" class="editorInput">
+        <input type="submit"/>
+        <textarea id="my_text_area" name="story" rows="50" cols="90"></textarea>
+
+    </form>
+
+    <div id="editDisplay" class="display">
+
+    </div>
+
+</div>
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+    var message = /*[[${test}]]*/
+    console.log(message);
+    const textArea = document.getElementById('my_text_area');
+    const editDisplay = document.getElementById('editDisplay');
+
+textArea.addEventListener('input', () => {
+
+    editDisplay.innerHTML = textArea.value;
+
+})
+
+/*]]>*/
+</script>
+
+</body>
+</html>

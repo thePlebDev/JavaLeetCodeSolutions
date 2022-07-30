@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+
+}
+
+header{
+    border:2px solid red;
+    height:90px;
+}

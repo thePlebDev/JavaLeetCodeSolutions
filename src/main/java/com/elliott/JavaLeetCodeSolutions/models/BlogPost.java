@@ -1,9 +1,11 @@
 package com.elliott.JavaLeetCodeSolutions.models;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
-@Entity
+@Entity(name = "blogpost")
 public class BlogPost extends AbstractEntity{
 
     public BlogPost(){}
@@ -12,6 +14,10 @@ public class BlogPost extends AbstractEntity{
     private String body;
     private Integer seriesNumber;
     private Date dateCreated;
+
+    @ManyToOne
+    @JoinColumn
+    private Series series;
 
     public BlogPost(String title,String body, Integer seriesNumber,Date date){
         this.title = title;

@@ -12,10 +12,10 @@
 <body>
 <header></header>
 <div class="editorCreator">
-    <form>
-        <input type="text" id="title" name="title" placeholder="title" class="editorInput">
+    <form th:action="@{/admin/blogPost/create}" th:object="${blogPost}" method="post">
+        <input type="text" th:field="*{title}" id="title" name="title" placeholder="title" class="editorInput">
         <input type="submit"/>
-        <textarea id="my_text_area" name="story" rows="50" cols="90"></textarea>
+        <textarea id="my_text_area" th:field="*{body}"  name="story" rows="50" cols="90"></textarea>
 
     </form>
 

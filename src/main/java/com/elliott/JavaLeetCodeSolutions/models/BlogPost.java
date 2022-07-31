@@ -2,6 +2,7 @@ package com.elliott.JavaLeetCodeSolutions.models;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
@@ -11,6 +12,8 @@ public class BlogPost extends AbstractEntity{
     public BlogPost(){}
 
     private String title;
+
+    @Lob
     private String body;
     private Integer seriesNumber;
     private Date dateCreated;

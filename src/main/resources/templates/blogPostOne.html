@@ -13,24 +13,21 @@
 
 <body>
 <header></header>
-<h1>BlogPostOne</h1>
+
 <div id="titleContainer"></div>
 <div id="bodyContainer"></div>
 
 <script th:inline="javascript">
 /*<![CDATA[*/
 
-var title = /*[[${title}]]*/
-var body = /*[[${body}]]*/
+const title = /*[[${title}]]*/
+const body = /*[[${body}]]*/
 
 const titleContainer = document.getElementById('titleContainer');
 const bodyContainer = document.getElementById('bodyContainer');
-console.log(titleContainer)
-console.log(bodyContainer)
 
 titleContainer.innerHTML = title
 bodyContainer.innerHTML = body
-console.log("it is working")
 
 
 /*]]>*/
@@ -39,3 +36,13 @@ console.log("it is working")
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+

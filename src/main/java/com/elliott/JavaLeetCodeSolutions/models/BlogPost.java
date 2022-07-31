@@ -15,6 +15,7 @@ public class BlogPost extends AbstractEntity{
 
     @Lob
     private String body;
+
     private Integer seriesNumber;
     private Date dateCreated;
 

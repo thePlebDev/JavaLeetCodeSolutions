@@ -24,3 +24,21 @@ public class BlogPostController {
         return "blogPostOne";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

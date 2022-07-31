@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head>
+    <meta charset="utf-8" />
+    <title>LeetCodeJava</title>
+    <meta name="description" content="Data structures and LeetCode in Java" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+
+
+<body>
+<header></header>
+<h1>BlogPostOne</h1>
+<div id="titleContainer"></div>
+<div id="bodyContainer"></div>
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+var title = /*[[${title}]]*/
+var body = /*[[${body}]]*/
+
+const titleContainer = document.getElementById('titleContainer');
+const bodyContainer = document.getElementById('bodyContainer');
+console.log(titleContainer)
+console.log(bodyContainer)
+
+titleContainer.innerHTML = title
+bodyContainer.innerHTML = body
+console.log("it is working")
+
+
+/*]]>*/
+</script>
+
+
+</body>
+</html>

@@ -9,7 +9,7 @@ public class Authority extends AbstractEntity{
 
     private String name;
 
-    @JoinColumn(name = "user")
+    @JoinColumn
     @ManyToOne
     private User user;
     public Authority(){}

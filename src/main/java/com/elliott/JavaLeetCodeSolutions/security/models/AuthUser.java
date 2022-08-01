@@ -1,12 +1,14 @@
-package com.elliott.JavaLeetCodeSolutions.security;
+package com.elliott.JavaLeetCodeSolutions.security.models;
 
 import com.elliott.JavaLeetCodeSolutions.models.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class AuthUser implements UserDetails {
     private User user;
@@ -17,7 +19,10 @@ public class AuthUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.user.getAuthorities().stream().map(
+                a -> new SimpleGrantedAuthority(a.getName())
+        ).collect(Collectors.toList());
+
     }
 
     @Override

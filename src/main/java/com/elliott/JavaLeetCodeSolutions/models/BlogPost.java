@@ -1,10 +1,12 @@
 package com.elliott.JavaLeetCodeSolutions.models;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.NaturalId;
+
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 @Entity(name = "blogpost")
 public class BlogPost extends AbstractEntity{
@@ -13,22 +15,33 @@ public class BlogPost extends AbstractEntity{
 
     private String title;
 
-    @Lob
+    @Column(columnDefinition = "TEXT")
     private String body;
 
-    private Integer seriesNumber;
+    private String filter;
+
+
     private Date dateCreated;
 
-    @ManyToOne
-    @JoinColumn
-    private Series series;
 
-    public BlogPost(String title,String body, Integer seriesNumber,Date date){
+
+
+    public BlogPost(String title,String body,String filter,Date date){
         this.title = title;
         this.body = body;
-        this.seriesNumber = seriesNumber;
+        this.filter = filter;
         this.dateCreated = date;
+
     }
+    public BlogPost(String title,String filter,Date date){
+        this.title = title;
+
+        this.filter = filter;
+        this.dateCreated = date;
+
+    }
+
+
 
     //GETTERS
     public String getTitle(){
@@ -37,12 +50,11 @@ public class BlogPost extends AbstractEntity{
     public String getBody(){
         return this.body;
     }
-    public Integer getSeriesNumber(){
-        return this.seriesNumber;
-    }
+    public String getFilter(){return this.filter;}
     public Date getDateCreated(){
         return this.dateCreated;
     }
+
 
     //SETTERS
     public void setTitle(String title){
@@ -51,12 +63,13 @@ public class BlogPost extends AbstractEntity{
     public void setBody(String body){
         this.body = body;
     }
-    public void setSeriesNumber(Integer seriesNumber){
-        this.seriesNumber = seriesNumber;
+    public void setFilter(String filter){
+        this.filter = filter;
     }
     public void  setDateCreated(Date date){
         this.dateCreated = date;
     }
+
 
 
 }

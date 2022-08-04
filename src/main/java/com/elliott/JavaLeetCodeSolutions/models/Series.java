@@ -7,12 +7,12 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Series extends AbstractEntity{
+
+public class Series{
 
     private String title;
 
-    @OneToMany(mappedBy = "series")
+
     private List<BlogPost> posts = new ArrayList<>();
 
     public Series() {

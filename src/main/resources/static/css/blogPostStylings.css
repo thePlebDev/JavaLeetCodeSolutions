@@ -1,3 +1,29 @@
 .red{
     color:red
 }
+
+.blogPostContainer{
+    margin-top:40px;
+    display:flex;
+
+
+}
+
+.blogTextContainer{
+
+    width:100%;
+
+
+}
+.subBlogTextContainer{
+   width:90%;
+   border-radius:8px;
+   background:white;
+   padding:20px;
+   margin:0 auto;
+}
+.blogAddContainer{
+
+    width:357px;
+
+}

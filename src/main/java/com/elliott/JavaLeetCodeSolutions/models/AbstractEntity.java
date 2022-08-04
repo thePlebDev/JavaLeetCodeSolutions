@@ -24,4 +24,9 @@ public class AbstractEntity {
     private void setId(Long id){
         this.id = id;
     }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

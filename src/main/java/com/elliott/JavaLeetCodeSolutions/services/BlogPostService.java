@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class BlogPostService {
@@ -21,6 +22,9 @@ public class BlogPostService {
         blogPost.setDateCreated(new Date());
         this.blogPostRepository.save(blogPost);
         return "";
+    }
+    public List<BlogPost> getLeetCodeSolutions(){
+        return this.blogPostRepository.findBlogPostByFilter("LEETCODE");
     }
 
     public BlogPost getBlogPostById(){

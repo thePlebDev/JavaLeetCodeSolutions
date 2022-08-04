@@ -1,0 +1,25 @@
+.tutorial-container{
+      width:65%;
+      margin:0 auto;
+      margin-top:120px;
+
+      border:2px solid red;
+      display: grid;
+      gap: 10px 0px;
+
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      align-items:center;
+      justify-items:center;
+
+}
+
+.tutorial-post-container{
+
+    cursor:pointer;
+    text-align:center;
+    width:200px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 6%), 0 0 2px rgb(0 0 0 / 7%);
+    border:1px solid black;
+    padding:10px;
+    border-radius:8px;
+}

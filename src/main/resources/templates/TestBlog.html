@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="">
+<head>
+    <meta charset="utf-8" />
+    <title>LeetCodeJava</title>
+    <meta name="description" content="Data structures and LeetCode in Java" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/blogPostStylings.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+</head>
+
+
+<body>
+<header>
+    <nav>
+    <h1>Home</h1>
+    </nav>
+</header>
+<div class="blogPostContainer">
+    <div class="blogTextContainer">
+        <div class="subBlogTextContainer">
+                <h1>Tree data structure</h1>
+                <hr/>
+                <p>
+                    Trees came to us as a break through in data organization, they allow us to implement a host of algorithms much faster
+                    than when using linear data structures, such as arrays or linked lists. Trees are often described as `non-linear`, what
+                    this means is that their data is not stored contiguously.Data stored inside a tree has a `parent - child` relationship,
+                    where depending on the type of tree, the parent will refer to none or many children.
+
+                </p>
+                <h2>Formal definition</h2>
+                <p>
+                    Formally we can define a Tree <span>T</span> as a set of nodes storing elements such that the nodes have a parent child relationship
+                    that satisfies the following 2 properties:
+                </p>
+                    <ol>
+                        <li>
+                            If T is nonempty, it has a special node, called the <span>root</span> of T, that has no parent
+                        </li>
+                        <li>
+                            Each node <span>v</span> of T different from the root has a unique parent node <span>w</span>; every node with parent w is called a <span>child</span> of w
+                        </li>
+                    </ol>
+                <p>
+                    It is important to point out, according to our definition, A tree can be empty, meaning that it does
+                    not have any nodes. This convention also allows us to define a tree <span>recursively</span>. Such that a tree T
+                    is either empty or consists of a node <span>r</span>, called the root of T, (and a possibly empty) set of
+                    subtrees whose roots are the children of r.
+                </p>
+                <h2>Less formal definition</h2>
+                <p>
+                     A Tree is a data structure composed of nodes, where each node(excluding the first node added) has a parent node.
+                     The root node has zero or more child nodes. Each child node has zero or more child nodes. Depending on the type
+                     of the Tree; the nodes may be in a particular order, there is a limit to the amount of child nodes and the nodes
+                     may or may not have links back to their parent nodes.
+                </p>
+                <h2>Types of Trees</h2>
+                <p>
+                    <ul>
+                        <li>Empty(Null) Tree: a tree without any nodes</li>
+                        <li>Root Tree: a tree with only one node</li>
+                        <li>Binary Tree: a tree in which each node has at most 2 children</li>
+                        <li>Two Tree: a binary tree that is either empty or each inner node has 2 children</li>
+                        <li>many more: Binary Search Tree(BST), 2-3 Tree, B-Tree, Red-Black Tree, Game Tree, Heap and many more</li>
+                     </ul>
+                </p>
+                <h2>Tree vs Binary Tree</h2>
+                <p>
+                    A <span>Binary Tree</span> is still a normal tree, meaning it stores data is a non-contiguous parent child relationship.
+                    What makes a Binary Tree unique is, each node has a max of two children nodes. It is worth pointing out that this type of restriction
+                    does not apply to all trees.
+                </p>
+                <h2>Binary Tree vs Binary Search Tree</h2>
+                <p>
+                    A <span>Binary Search Tree (BST)</span> is a tree in which every node fits a specific ordering property: <span>all the left
+                    descendants <= n < all right descendants. This must be true for each node.</span> That is basically fancy talk for saying that
+                    a binary search tree is a <span>sorted tree</span>, this sorted nature is what allows us to perform optimal search algorithms
+                    on it. Also, if you are in an interview, and you have been given a question involving Trees make sure to clarify the type of
+                    tree.
+                </p>
+                <h2>Binary Search Tree implementation</h2>
+                <p>
+                    To implement a Binary Search tree we can break the process down into five simple steps
+                    <ol>
+                        <li>Implement the node class</li>
+                        <li>Handle the instance variables</li>
+                        <li>Handle insertion</li>
+                        <li>Handle deletion</li>
+                    </ol>
+                </p>
+                <h3>1) Implement the node class</h3>
+                <pre>
+                    public class BST< E > {
+                        private static class Node < E >{
+                            private int key;
+                            private E element;
+                            private Node< E > leftChild;
+                            private Node< E > rightChild;
+
+                            public Node(E element,int key, Node< E > leftChild,Node< E > rightChild){
+                                this.key = key;
+                                this.element = element;
+                                this.leftChild = leftChild;
+                                this.rightChild = rightChild;
+                            }
+                            //GETTERS
+                            public E getElement(){return this.element;}
+                            public Node< E > getLeftChild(){return this.leftChild;}
+                            public Node< E > getRightChild(){return this.rightChild;}
+                            public int getKey(){return this.key;}
+
+                            //SETTERS
+                            public void setLeftChild(Node< E > left){this.leftChild = leftChild;}
+                            public void setRightChild(Node< E > rightChild){this.rightChild = rightChild;}
+                            public void setKey(int key){this.key = key;}
+                        }
+
+                    //---------------END OF THE NODE CLASS-----------------------
+
+                    }
+                </pre>
+
+                <p>
+                    Now the first thing that you should notice from the code above is our <span>Node</span> class is private, static and
+                    nested inside of the <span>BST</span> class. The reasoning behind the private and nested class is for packaging purposes,
+                    the Node class has not other use outside this class. We make the nested class static, which allows it to interact
+                    with instance members just like any other top-level class. I would also like to point out, each of Node classes has a key
+                    element, which is used to represent where it should go inside the Tree. This allows our code to stay more generic, although
+                    it does make the code a little messy at times. At the end of this blog post I will show how we can use the <span>Comparable</span> interface to eliminate the key property.
+                </p>
+               <h3>2) Handle the instance variables</h3>
+               <pre>
+                   public class BST< E > {
+
+                   //---------------END OF THE NODE CLASS-----------------------
+
+                    private Node< E > root = null; // root of the tree
+                    private int size = 0;
+
+                   }
+
+               </pre>
+            <p>
+                The two main instance variables that we want to handle are <span>root</span>, which holds a reference to the root node (first Node added to the tree )
+                and  <span>size</span> which keeps track of how many Nodes are in our tree
+            </p>
+            <h3>3) Handle insertion</h3>
+            <pre>
+                public class BST< E > {
+                    //previous code included but not shown
+
+                    public void insert(E element,int key){
+                        Node< E > newNode = new Node(element, key,null,null);
+                        if(this.root == null){
+                            this.root = newNode;
+                        }else{
+                            insertNode(this.root,newNode);
+                        }
+                    }
+
+                    private void insertNode(Node< E > node,Node< E > newNode){
+                        if(newNode.getKey() < node.getKey()){
+                            if(node.getLeftChild() == null){
+                                node.setLeftChild(newNode);
+                            }else{
+                                insertNode(node.getLeftChild(),newNode);
+                            }
+                        }else{
+                            if(node.getRightChild() == null){
+                                node.setRightChild(newNode);
+                            }else{
+                                insertNode(node.getRightChild(),newNode);
+                            }
+                        }
+                        size ++;
+                    }
+                }
+
+            </pre>
+            <p>
+                In the code block above we have created two methods:
+                <ol>
+                    <li>insert(E element,int key): part of the public API and used to handle the use condition of no root</li>
+                    <li>insertNode(Node< E > node,Node< E > newNode): not part of the public API. Handles condition with root present</li>
+                </ol>
+
+            </p>
+            <p>
+                With the <span>insertNode()</span> method our main goal is to retain the organization within our tree. You will notice
+                we are often checking the values of the keys, <span>newNode.getKey() < node.getKey()</span>, allowing our program to determine
+                where it should be placed in the tree's hierarchy. I would also like to point out that we are using recursion, <span>insertNode(node.getLeftChild(),newNode)</span>
+                ,which means we need a base case. For this algorithm we actually have 2 base cases: <span>node.getLeftChild() == null</span> and <span>node.getRightChild() == null</span>.
+                The last thing that we do is increase the size variable by one, <span>size++</span>
+
+            </p>
+            <h3>4) Handle deletion</h3>
+
+
+        </div>
+    </div>
+    <div class="blogAddContainer">
+        <h1>adds</h1>
+    </div>
+
+</div>
+
+
+
+
+
+</body>
+</html>

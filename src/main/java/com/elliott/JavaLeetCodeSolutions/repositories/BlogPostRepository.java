@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
@@ -17,4 +19,10 @@ public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
     @Transactional
     @Query(value = "select * from blogPost where blogPost.id = ?1",nativeQuery = true)
     BlogPost findBlogPostByIdIs(Long id);
+
+    @Transactional
+    @Query(value = "select * from blogPost where blogPost.filter = ?1",nativeQuery = true)
+    List<BlogPost> findBlogPostByFilter(String filter);
+
+
 }

@@ -12,13 +12,11 @@ import java.util.Optional;
 @Repository
 public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
 
-    //@Query(value = "SELECT * FROM calf WHERE calf.tag_number = ?1",nativeQuery = true)
-//    @Query(value = "SELECT * FROM blogpost WHERE blogpost.title = ?1",nativeQuery = true)
-//    public BlogPost
 
-    @Transactional
-    @Query(value = "select * from blogPost where blogPost.id = ?1",nativeQuery = true)
-    BlogPost findBlogPostByIdIs(Long id);
+
+    @Query(value = "SELECT * FROM blogPost WHERE blogPost.id = ?1",nativeQuery = true)
+    Optional<BlogPost> findBlogPostByPrimaryKey(Long id);
+
 
     @Transactional
     @Query(value = "select * from blogPost where blogPost.filter = ?1",nativeQuery = true)

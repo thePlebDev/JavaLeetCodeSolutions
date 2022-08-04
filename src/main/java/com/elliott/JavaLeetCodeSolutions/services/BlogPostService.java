@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BlogPostService {
@@ -26,9 +27,11 @@ public class BlogPostService {
     public List<BlogPost> getLeetCodeSolutions(){
         return this.blogPostRepository.findBlogPostByFilter("LEETCODE");
     }
+    public List<BlogPost> getDSATutorials(){
+        return this.blogPostRepository.findBlogPostByFilter("DSA");
+    }
 
-    public BlogPost getBlogPostById(){
-        //todo:NEEDS TO BE REFACTORED WITH AN OPTIONAL
-        return this.blogPostRepository.findBlogPostByIdIs(1l);
+    public Optional<BlogPost> getBlogPostById(Long id){
+        return this.blogPostRepository.findBlogPostByPrimaryKey(id);
     }
 }

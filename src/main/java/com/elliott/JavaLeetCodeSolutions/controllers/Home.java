@@ -75,11 +75,6 @@ public class Home {
         return "createBlogPost";
     }
 
-    @GetMapping("/test/blog")
-    public String testBlog(){
-
-        return "testBlog";
-    }
 
     @PostMapping("/admin/blogPost/create")
     public String createBlogPostPost(@ModelAttribute BlogPost post){
@@ -88,4 +83,10 @@ public class Home {
         return "home";
 
     }
+
+//    @GetMapping("/test/blog")
+//    public String testBlog(){
+//
+//        return "testBlog";
+//    }
 }

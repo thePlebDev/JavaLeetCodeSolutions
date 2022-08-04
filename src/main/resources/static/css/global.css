@@ -92,9 +92,15 @@ pre{
         padding: 7px 30px;
         margin: 15px 0px;
         line-height: 1.3em;
+        overflow-y: auto;
 }
 a{
     text-decoration: none;
     color:black;
 
+}
+.link{
+    color: #0000EE;
+    margin-bottom:20px;
+    font-size:25px;
 }

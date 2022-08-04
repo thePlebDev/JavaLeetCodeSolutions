@@ -15,14 +15,14 @@ public class BlogPostController {
     @Autowired
     private BlogPostService blogPostService;
 
-    @GetMapping("/tree/1")
-    public String getBlogPostOne(Model model){
-        BlogPost foundBlogPost = this.blogPostService.getBlogPostById();
-
-        model.addAttribute("title",foundBlogPost.getTitle());
-        model.addAttribute("body",foundBlogPost.getBody());
-        return "blogPostOne";
-    }
+//    @GetMapping("/tree/1")
+//    public String getBlogPostOne(Model model){
+//        BlogPost foundBlogPost = this.blogPostService.getBlogPostById(1l);
+//
+//        model.addAttribute("title",foundBlogPost.getTitle());
+//        model.addAttribute("body",foundBlogPost.getBody());
+//        return "blogPostOne";
+//    }
 }
 
 

@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class Home {
@@ -29,21 +31,39 @@ public class Home {
     @GetMapping("/leetCodeSolution")
     public String getLeetCodeSolutions(Model model){
         List<BlogPost> blogPosts = this.blogPostService.getLeetCodeSolutions();
-//        BlogPost post1 = new BlogPost();
-//        BlogPost post2 = new BlogPost();
-//        post1.setTitle("Two Sum");
-//        post2.setTitle("Shortest array length");
-//        List<BlogPost> posts = new ArrayList<>();
-//        posts.add(post1);
-//        posts.add(post2);
 
         model.addAttribute("posts",blogPosts);
 
         return "leetCodeSolutions";
     }
+    @GetMapping("/leetcode")
+    public String getSpecificLeetCode(@RequestParam Long id,Model model){
+        Optional<BlogPost> post = this.blogPostService.getBlogPostById(id);
+        if (post.isEmpty()){
+            return "home";
+        }else{
+            model.addAttribute("body",post.get().getBody());
+            return "leetCodeSolution";
+        }
+
+    }
+    @GetMapping("/dsa")
+    public String getSpecificDSA(@RequestParam Long id,Model model){
+        Optional<BlogPost> post = this.blogPostService.getBlogPostById(id);
+        if (post.isEmpty()){
+            return "home";
+        }else{
+            model.addAttribute("body",post.get().getBody());
+            return "indivDSATutorial";
+        }
+
+    }
 
     @GetMapping("/dataStructureTutorial")
-    public String getDataStructure(){
+    public String getDataStructure(Model model){
+        List<BlogPost> blogPosts = this.blogPostService.getDSATutorials();
+        model.addAttribute("posts",blogPosts);
+
         return "dataStructureTutorial";
     }
 

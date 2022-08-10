@@ -4,6 +4,9 @@ import com.elliott.JavaLeetCodeSolutions.models.BlogPost;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import static org.springframework.data.domain.ExampleMatcher.*;
 
 import java.util.Date;
 import java.util.List;
@@ -50,5 +53,29 @@ public class BlogPostRepositoryTest {
         assertThat(foundBlogPosts.size()).isEqualTo(2);
 
 
+    }
+
+    @Test
+    public void findTestByTitle(){
+        //GIVEN
+        String EXPECTED_TITLE = "RECURSION";
+        String EXPECTED_TITLE2 = "RECURSION PART 2";
+        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
+        BlogPost postTwo = new BlogPost(EXPECTED_TITLE2,"body","EXPECTED_FILTER",new Date());
+        BlogPost postThree = new BlogPost("title","body","leetCode",new Date());
+
+        //WHEN
+        underTest.save(postOne);
+        underTest.save(postTwo);
+        underTest.save(postThree);
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher(EXPECTED_TITLE, new GenericPropertyMatcher().contains());
+        Example<BlogPost> blogPostExample = Example.of(new BlogPost(EXPECTED_TITLE,"","",new Date()),matcher);
+        List<BlogPost> blogPostList = underTest.findAll(blogPostExample);
+
+
+        //THEN
+        assertThat(blogPostList.size()).isEqualTo(2);
     }
 }

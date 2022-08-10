@@ -43,6 +43,7 @@ public class BlogPost extends AbstractEntity{
 
 
 
+
     //GETTERS
     public String getTitle(){
         return this.title;

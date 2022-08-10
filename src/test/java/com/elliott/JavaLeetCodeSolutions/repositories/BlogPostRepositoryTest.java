@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+
 @DataJpaTest
 public class BlogPostRepositoryTest {
 
@@ -59,7 +60,7 @@ public class BlogPostRepositoryTest {
     public void findTestByTitle(){
         //GIVEN
         String EXPECTED_TITLE = "RECURSION";
-        String EXPECTED_TITLE2 = "RECURSION PART 2";
+        String EXPECTED_TITLE2 = "RECURSION part 2";
         BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
         BlogPost postTwo = new BlogPost(EXPECTED_TITLE2,"body","EXPECTED_FILTER",new Date());
         BlogPost postThree = new BlogPost("title","body","leetCode",new Date());
@@ -69,10 +70,8 @@ public class BlogPostRepositoryTest {
         underTest.save(postTwo);
         underTest.save(postThree);
 
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher(EXPECTED_TITLE, new GenericPropertyMatcher().contains());
-        Example<BlogPost> blogPostExample = Example.of(new BlogPost(EXPECTED_TITLE,"","",new Date()),matcher);
-        List<BlogPost> blogPostList = underTest.findAll(blogPostExample);
+
+        List<BlogPost> blogPostList = underTest.findBlogPostByTitle("RECURSION");
 
 
         //THEN

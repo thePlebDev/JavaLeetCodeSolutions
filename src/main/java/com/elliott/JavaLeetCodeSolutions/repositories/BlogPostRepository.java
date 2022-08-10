@@ -3,6 +3,7 @@ package com.elliott.JavaLeetCodeSolutions.repositories;
 import com.elliott.JavaLeetCodeSolutions.models.BlogPost;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.stereotype.Repository;
 
@@ -24,7 +25,8 @@ public interface BlogPostRepository extends JpaRepository<BlogPost,Long>, QueryB
     List<BlogPost> findBlogPostByFilter(String filter);
 
 
-
+    @Query(value = "SELECT * FROM blogPost WHERE blogPost.title LIKE  %:title%",nativeQuery = true)
+    List<BlogPost> findBlogPostByTitle(@Param("title") String title);
 
 
 }

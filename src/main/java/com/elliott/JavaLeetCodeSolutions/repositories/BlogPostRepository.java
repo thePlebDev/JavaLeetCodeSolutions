@@ -28,5 +28,8 @@ public interface BlogPostRepository extends JpaRepository<BlogPost,Long>, QueryB
     @Query(value = "SELECT * FROM blogPost WHERE blogPost.title LIKE  %:title%",nativeQuery = true)
     List<BlogPost> findBlogPostByTitle(@Param("title") String title);
 
+    @Query(value = "SELECT * FROM blogPost WHERE blogPost.filter = :filter AND blogPost.title LIKE  :title ",nativeQuery = true)
+    List<BlogPost> findBlogPostByTitleNFilter(@Param("title") String title,@Param("filter") String filter);
+
 
 }

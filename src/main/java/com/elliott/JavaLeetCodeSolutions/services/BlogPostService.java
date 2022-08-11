@@ -34,4 +34,8 @@ public class BlogPostService {
     public Optional<BlogPost> getBlogPostById(Long id){
         return this.blogPostRepository.findBlogPostByPrimaryKey(id);
     }
+
+    public List<BlogPost> getAllByTitleNFilter(String title,String filter){
+        return this.blogPostRepository.findBlogPostByTitleNFilter(title,filter);
+    }
 }

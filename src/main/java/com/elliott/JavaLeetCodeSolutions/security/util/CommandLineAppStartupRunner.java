@@ -25,10 +25,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String...args) throws Exception {
-//
-//        User admin = new User(username,password, new Authority());
-//        admin.setPassword(passwordEncoder.encode(password));
-//
-//        userRepository.save(admin);
+
+        User admin = new User(username,password, new Authority());
+        admin.setPassword(passwordEncoder.encode(password));
+
+        userRepository.save(admin);
     }
 }

@@ -4,6 +4,7 @@ import com.elliott.JavaLeetCodeSolutions.models.BlogPost;
 import com.elliott.JavaLeetCodeSolutions.models.Filters;
 import com.elliott.JavaLeetCodeSolutions.services.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
+//TODO: NO MORE IN THIS CONTROLLER
 @Controller
 public class Home {
 
@@ -31,6 +32,16 @@ public class Home {
     @GetMapping("/leetCodeSolution")
     public String getLeetCodeSolutions(Model model){
         List<BlogPost> blogPosts = this.blogPostService.getLeetCodeSolutions();
+
+        model.addAttribute("posts",blogPosts);
+
+        return "leetCodeSolutions";
+    }
+
+    //TODO: TEST THIS OUT
+    @GetMapping("/leetCodeSolution/search")
+    public String getLeetCodeSolutionsByTitle(@RequestParam String title,Model model){
+        List<BlogPost> blogPosts = this.blogPostService.getAllByTitleNFilter(title,"LEETCODE");
 
         model.addAttribute("posts",blogPosts);
 
@@ -61,7 +72,18 @@ public class Home {
 
     @GetMapping("/dataStructureTutorial")
     public String getDataStructure(Model model){
+
         List<BlogPost> blogPosts = this.blogPostService.getDSATutorials();
+        model.addAttribute("posts",blogPosts);
+
+        return "dataStructureTutorial";
+    }
+
+    @GetMapping("/dataStructureTutorial/search")
+    public String getDataStructureByTitle(@RequestParam String title,Model model){
+
+        List<BlogPost> blogPosts = this.blogPostService.getAllByTitleNFilter(title,"DSA");
+
         model.addAttribute("posts",blogPosts);
 
         return "dataStructureTutorial";

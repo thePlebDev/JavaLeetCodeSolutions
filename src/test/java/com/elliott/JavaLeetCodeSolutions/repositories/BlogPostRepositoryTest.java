@@ -77,4 +77,25 @@ public class BlogPostRepositoryTest {
         //THEN
         assertThat(blogPostList.size()).isEqualTo(2);
     }
+
+    @Test
+    public void findTestByTitleAndFilter(){
+        //GIVEN
+        String EXPECTED_TITLE = "RECURSION";
+        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","DSA",new Date());
+        BlogPost postTwo = new BlogPost(EXPECTED_TITLE,"body","LEETCODE",new Date());
+        BlogPost postThree = new BlogPost("title","body","LEETCODE",new Date());
+
+        //WHEN
+        underTest.save(postOne);
+        underTest.save(postTwo);
+        underTest.save(postThree);
+
+
+        List<BlogPost> blogPostList = underTest.findBlogPostByTitleNFilter("RECURSION","LEETCODE");
+
+
+        //THEN
+        assertThat(blogPostList.size()).isEqualTo(1);
+    }
 }

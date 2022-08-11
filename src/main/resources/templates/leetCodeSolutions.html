@@ -30,10 +30,13 @@
     </nav>
 </header>
 <div class="tutorial-container" >
-    <form class="tutorial-form" th:action="@{/leetCodeSolution/search}" method="get">
-        Title: <input type="text" name="title" required/>
+    <form class="tutorial-form" th:action="@{/leetCodeSolution/search}" method="get" >
+       <input type="text" name="title" required placeholder="Search by title" class="input-title-filter"/>
         <input type="submit" value="Search" />
-        <input type="button" value="Clear">
+        <a href="/leetCodeSolution">
+            <input type="button" value="Reset">
+        </a>
+
     </form>
     <div class="tutorial-sub-container">
         <div th:if="${#lists.isEmpty(posts)}">

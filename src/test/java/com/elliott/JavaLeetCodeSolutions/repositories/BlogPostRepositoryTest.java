@@ -78,13 +78,14 @@ public class BlogPostRepositoryTest {
         assertThat(blogPostList.size()).isEqualTo(2);
     }
 
-    @Test
+    @Test //for right now, this test is not necessary
     public void findTestByTitleAndFilter(){
         //GIVEN
         String EXPECTED_TITLE = "RECURSION";
-        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","DSA",new Date());
-        BlogPost postTwo = new BlogPost(EXPECTED_TITLE,"body","LEETCODE",new Date());
-        BlogPost postThree = new BlogPost("title","body","LEETCODE",new Date());
+        String EXPECTED_TITLE2 = "RECURSION part 2";
+        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
+        BlogPost postTwo = new BlogPost(EXPECTED_TITLE2,"body","EXPECTED_FILTER",new Date());
+        BlogPost postThree = new BlogPost("title","body","leetCode",new Date());
 
         //WHEN
         underTest.save(postOne);
@@ -92,10 +93,10 @@ public class BlogPostRepositoryTest {
         underTest.save(postThree);
 
 
-        List<BlogPost> blogPostList = underTest.findBlogPostByTitleNFilter("RECURSION","LEETCODE");
+        List<BlogPost> blogPostList = underTest.findBlogPostByTitleNFilter(EXPECTED_TITLE,"EXPECTED_FILTER");
 
 
         //THEN
-        assertThat(blogPostList.size()).isEqualTo(1);
+        assertThat(blogPostList.size()).isEqualTo(2);
     }
 }

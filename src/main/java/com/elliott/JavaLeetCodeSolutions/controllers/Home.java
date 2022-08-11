@@ -41,7 +41,7 @@ public class Home {
     //TODO: TEST THIS OUT
     @GetMapping("/leetCodeSolution/search")
     public String getLeetCodeSolutionsByTitle(@RequestParam String title,Model model){
-        List<BlogPost> blogPosts = this.blogPostService.getAllByTitleNFilter(title,"LEETCODE");
+        List<BlogPost> blogPosts = this.blogPostService.getAllByTitle(title);
 
         model.addAttribute("posts",blogPosts);
 
@@ -82,7 +82,7 @@ public class Home {
     @GetMapping("/dataStructureTutorial/search")
     public String getDataStructureByTitle(@RequestParam String title,Model model){
 
-        List<BlogPost> blogPosts = this.blogPostService.getAllByTitleNFilter(title,"DSA");
+        List<BlogPost> blogPosts = this.blogPostService.getAllByTitle(title);
 
         model.addAttribute("posts",blogPosts);
 

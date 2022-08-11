@@ -35,7 +35,12 @@ public class BlogPostService {
         return this.blogPostRepository.findBlogPostByPrimaryKey(id);
     }
 
+    //todo:changing this
     public List<BlogPost> getAllByTitleNFilter(String title,String filter){
         return this.blogPostRepository.findBlogPostByTitleNFilter(title,filter);
+    }
+
+    public List<BlogPost> getAllByTitle(String title){
+        return this.blogPostRepository.findBlogPostByTitle(title);
     }
 }

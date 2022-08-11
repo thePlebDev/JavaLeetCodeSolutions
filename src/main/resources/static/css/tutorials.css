@@ -22,6 +22,17 @@
     display:flex;
     align-items:center;
     justify-content:center;
+
+
+
+}
+.tutorial-form input{
+    height:40px;
+    padding:5px;
+    margin:0 5px;
+}
+.input-title-filter{
+    font-size:20px;
 }
 
 .tutorial-post-container{
@@ -34,3 +45,4 @@
     padding:10px;
     border-radius:8px;
 }
+

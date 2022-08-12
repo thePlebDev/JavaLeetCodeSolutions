@@ -71,7 +71,7 @@ public class BlogPostRepositoryTest {
         underTest.save(postThree);
 
 
-        List<BlogPost> blogPostList = underTest.findBlogPostByTitle("RECURSION");
+        List<BlogPost> blogPostList = underTest.findByTitleIgnoreCaseContaining("RECURSION");
 
 
         //THEN

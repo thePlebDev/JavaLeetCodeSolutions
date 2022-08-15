@@ -72,6 +72,9 @@ public class BlogPost extends AbstractEntity{
     public void  setDateCreated(Date date){
         this.dateCreated = date;
     }
+    public void setTags(Set<Tag> tags){
+        this.tags = tags;
+    }
 
     //UTILITY
     @Override

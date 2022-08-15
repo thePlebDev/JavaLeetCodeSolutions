@@ -1,13 +1,17 @@
 package com.elliott.JavaLeetCodeSolutions.models;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 public class Tag extends AbstractEntity{
 
+    @NaturalId
     private String title;
 
     @ManyToMany(mappedBy = "tags")
@@ -37,16 +41,16 @@ public class Tag extends AbstractEntity{
 
     //UTILITY
     @Override
-    public boolean equals(Object o){
-        if(this == o) return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tag)) return false;
+        Tag tag = (Tag) o;
+        return Objects.equals(getTitle(), tag.getTitle());
+    }
 
-        if(!(o instanceof BlogPost)){
-            return false;
-        }
-        BlogPost other = (BlogPost) o;
-
-        return this.getId() != null &&
-                this.getId().equals(other.getId());
+    @Override
+    public int hashCode() {
+        return Objects.hash(getTitle());
     }
 
     public void addBlogPost(BlogPost post){

@@ -1,6 +1,7 @@
 package com.elliott.JavaLeetCodeSolutions.repositories;
 
 import com.elliott.JavaLeetCodeSolutions.models.BlogPost;
+import com.elliott.JavaLeetCodeSolutions.models.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -32,6 +33,13 @@ public interface BlogPostRepository extends JpaRepository<BlogPost,Long>, QueryB
     List<BlogPost> findBlogPostByTitleNFilter(@Param("title") String title,@Param("filter") String filter);
 
     List<BlogPost>findByTitleIgnoreCaseContaining(String title);
+
+    // SEARCHING FOR THE TAGS
+    List<BlogPost> findByTags(Tag tag);
+
+    //SEARCH BY TAG OR TITLE
+    List<BlogPost> findByTitleIgnoreCaseContainingOrTags(String title,Tag tag);
+
 
 
 }

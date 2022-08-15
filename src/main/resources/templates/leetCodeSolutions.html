@@ -34,6 +34,7 @@
 <div class="tutorial-container" >
     <form class="tutorial-form" th:action="@{/leetCodeSolution/search}" method="get" >
        <input type="text" name="title" required placeholder="Search by title" class="input-title-filter"/>
+
         <input type="submit" value="Search" />
         <a href="/leetCodeSolution">
             <input type="button" value="Reset">
@@ -86,6 +87,9 @@
                     </clipPath>
                 </defs>
             </svg>
+                <div th:each="filterTags: ${post.tags}">
+                    <p th:text="${filterTags.title}" class="filter-tag"></p>
+                </div>
 
             <div class="header-neon-text">Click for solution</div>
             </a>

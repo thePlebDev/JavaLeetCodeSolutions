@@ -113,10 +113,63 @@ public class BlogPostRepositoryTest {
         Tag tag = new Tag(EXPECTED_TAG_TITLE);
         postOne.addTag(tag);
 
+        //WHEN
         underTest.save(postOne);
         int tagSize = tagRepository.findAll().size();
 
+        //THEN
         assertThat(tagSize).isEqualTo(1);
+
+    }
+
+    @Test
+    public void findByTag(){
+        //GIVEN
+        String EXPECTED_TITLE = "RECURSION";
+        String EXPECTED_TAG_TITLE="EASY";
+
+        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
+        BlogPost postTwo = new BlogPost("MEAT BALL","body","EXPECTED_FILTER",new Date());
+
+        Tag tag = new Tag(EXPECTED_TAG_TITLE);
+        postOne.addTag(tag);
+        postTwo.addTag(tag);
+
+        //WHEN
+        underTest.save(postOne);
+        underTest.save(postTwo);
+        List<BlogPost> foundBlogs= underTest.findByTags(tag);
+
+        //THEN
+        assertThat(foundBlogs.size()).isEqualTo(2);
+
+
+    }
+
+    @Test
+    public void findByTitleOrTag(){
+        //GIVEN
+        String EXPECTED_TITLE = "RECURSION";
+        String EXPECTED_TAG_TITLE="EASY";
+
+        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
+        BlogPost postTwo = new BlogPost("MEAT BALL","body","EXPECTED_FILTER",new Date());
+
+        Tag tag = new Tag(EXPECTED_TAG_TITLE);
+        postOne.addTag(tag);
+        postTwo.addTag(tag);
+
+        //WHEN
+        underTest.save(postOne);
+        underTest.save(postTwo);
+
+        List<BlogPost> foundBlogs= underTest.findByTitleIgnoreCaseContainingOrTags(EXPECTED_TITLE,null);
+
+        //THEN
+        assertThat(foundBlogs.size()).isEqualTo(1);
+
+
+
 
     }
 }

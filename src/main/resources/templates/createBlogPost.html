@@ -15,6 +15,11 @@
     <form th:action="@{/admin/blogPost/create}" th:object="${blogPost}" method="post">
         <input type="text" th:field="*{title}" id="title" name="title" placeholder="title" class="editorInput">
         <input type="text" th:field="*{filter}" id="filter" name="filter" placeholder="filter" class="editorInput">
+        <div th:each="tag : ${allTags}">
+            <input type="radio" th:field="*{tags}" th:text="${tag.title}" th:value="${tag.id}" >
+        </div>
+
+
         <input type="submit"/>
 
         <textarea id="my_text_area" th:field="*{body}"  name="story" rows="50" cols="90"></textarea>

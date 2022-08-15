@@ -2,6 +2,8 @@ package com.elliott.JavaLeetCodeSolutions.controllers;
 
 import com.elliott.JavaLeetCodeSolutions.models.BlogPost;
 import com.elliott.JavaLeetCodeSolutions.models.Filters;
+import com.elliott.JavaLeetCodeSolutions.models.Tag;
+import com.elliott.JavaLeetCodeSolutions.repositories.TagRepository;
 import com.elliott.JavaLeetCodeSolutions.services.BlogPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +24,9 @@ public class Home {
 
     @Autowired
     private BlogPostService blogPostService;
+
+    @Autowired
+    private TagRepository tagRepository;
 
 
     @GetMapping("/")
@@ -91,8 +96,10 @@ public class Home {
 
     @GetMapping("/admin/blogPost/create")
     public String createBlogPost(Model model){
-
+        List<Tag> allTags = this.tagRepository.findAll();
+        Tag[] intArray = new Tag[]{new Tag("EASY"),new Tag("MEDIUM"),new Tag("HARD") };
         model.addAttribute("blogPost",new BlogPost());
+        model.addAttribute("allTags",allTags);
 
         return "createBlogPost";
     }
@@ -100,6 +107,11 @@ public class Home {
 
     @PostMapping("/admin/blogPost/create")
     public String createBlogPostPost(@ModelAttribute BlogPost post){
+        System.out.println("IT IS BELOW");
+        System.out.println("IT IS BELOW");
+        System.out.println(post.getTags().isEmpty());
+        System.out.println("IT IS ABOVE");
+        System.out.println("IT IS ABOVE");
         this.blogPostService.saveBlogPost(post);
 
         return "home";

@@ -1,6 +1,7 @@
 package com.elliott.JavaLeetCodeSolutions.repositories;
 
 import com.elliott.JavaLeetCodeSolutions.models.BlogPost;
+import com.elliott.JavaLeetCodeSolutions.models.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -19,6 +20,8 @@ public class BlogPostRepositoryTest {
 
     @Autowired
     private BlogPostRepository underTest;
+
+    @Autowired TagRepository tagRepository;
 
 
     @Test
@@ -98,5 +101,22 @@ public class BlogPostRepositoryTest {
 
         //THEN
         assertThat(blogPostList.size()).isEqualTo(2);
+    }
+
+    @Test
+    public void testingTags(){
+        //GIVEN
+        String EXPECTED_TITLE = "RECURSION";
+        String EXPECTED_TAG_TITLE="EASY";
+
+        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
+        Tag tag = new Tag(EXPECTED_TAG_TITLE);
+        postOne.addTag(tag);
+
+        underTest.save(postOne);
+        int tagSize = tagRepository.findAll().size();
+
+        assertThat(tagSize).isEqualTo(1);
+
     }
 }

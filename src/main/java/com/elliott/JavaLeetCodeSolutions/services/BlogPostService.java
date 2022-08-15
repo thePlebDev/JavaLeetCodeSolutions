@@ -41,6 +41,6 @@ public class BlogPostService {
     }
 
     public List<BlogPost> getAllByTitle(String title){
-        return this.blogPostRepository.findBlogPostByTitle(title);
+        return this.blogPostRepository.findByTitleIgnoreCaseContaining(title);
     }
 }

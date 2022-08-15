@@ -3,10 +3,7 @@ package com.elliott.JavaLeetCodeSolutions.models;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity(name = "blogpost")
 public class BlogPost extends AbstractEntity{
@@ -22,6 +19,12 @@ public class BlogPost extends AbstractEntity{
 
 
     private Date dateCreated;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JoinTable(name="BLOG_TAG",
+            joinColumns = @JoinColumn(name = "BLOG_ID"),
+            inverseJoinColumns = @JoinColumn(name="TAG_ID"))
+    private Set<Tag> tags = new HashSet<>();
 
 
 
@@ -42,8 +45,6 @@ public class BlogPost extends AbstractEntity{
     }
 
 
-
-
     //GETTERS
     public String getTitle(){
         return this.title;
@@ -55,6 +56,7 @@ public class BlogPost extends AbstractEntity{
     public Date getDateCreated(){
         return this.dateCreated;
     }
+    public Set<Tag> getTags(){return this.tags;}
 
 
     //SETTERS
@@ -71,6 +73,28 @@ public class BlogPost extends AbstractEntity{
         this.dateCreated = date;
     }
 
+    //UTILITY
+    @Override
+    public boolean equals(Object o){
+        if(this == o) return true;
+
+        if(!(o instanceof BlogPost)){
+            return false;
+        }
+        BlogPost other = (BlogPost) o;
+
+        return this.getId() != null &&
+                this.getId().equals(other.getId());
+    }
+
+    public void addTag(Tag tag){
+        this.tags.add(tag);
+        tag.addBlogPost(this);
+    }
+    public void removeTag(Tag tag){
+        this.tags.remove(tag);
+        tag.removeBlogPost(this);
+    }
 
 
 }

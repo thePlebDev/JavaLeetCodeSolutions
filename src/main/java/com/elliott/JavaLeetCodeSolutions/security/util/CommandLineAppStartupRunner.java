@@ -11,11 +11,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
-    @Value("${admin.username}")
-    private String username;
-
-    @Value("${admin.password}")
-    private String password;
 
     @Autowired
     UserRepository userRepository;
@@ -26,9 +21,5 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Override
     public void run(String...args) throws Exception {
 
-        User admin = new User(username,password, new Authority());
-        admin.setPassword(passwordEncoder.encode(password));
-
-        userRepository.save(admin);
     }
 }

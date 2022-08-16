@@ -163,7 +163,7 @@ public class BlogPostRepositoryTest {
         underTest.save(postOne);
         underTest.save(postTwo);
 
-        List<BlogPost> foundBlogs= underTest.findByTitleIgnoreCaseContainingOrTags(EXPECTED_TITLE,null);
+        List<BlogPost> foundBlogs= underTest.findByTitleIgnoreCaseContainingOrTags(null,null);
 
         //THEN
         assertThat(foundBlogs.size()).isEqualTo(1);

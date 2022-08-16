@@ -33,7 +33,13 @@
 </header>
 <div class="tutorial-container" >
     <form class="tutorial-form" th:action="@{/leetCodeSolution/search}" method="get" >
-       <input type="text" name="title" required placeholder="Search by title" class="input-title-filter"/>
+       <input type="text" name="title"  placeholder="Search by title" class="input-title-filter"/>
+        <select name="filter" id="filters">
+            <option disabled selected value> -- Filter -- </option>
+            <option value="EASY">Easy</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HARD">Hard</option>
+        </select>
 
         <input type="submit" value="Search" />
         <a href="/leetCodeSolution">

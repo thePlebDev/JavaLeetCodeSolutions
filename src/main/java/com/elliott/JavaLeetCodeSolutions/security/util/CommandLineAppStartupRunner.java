@@ -34,8 +34,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         User user = new User(username,encryptedPassword,null);
 
         this.userRepository.save(user);
-        this.tagRepository.save(new Tag("#EASY"));
-        this.tagRepository.save(new Tag("#MEDIUM"));
-        this.tagRepository.save(new Tag("#HARD"));
+        this.tagRepository.save(new Tag("EASY"));
+        this.tagRepository.save(new Tag("MEDIUM"));
+        this.tagRepository.save(new Tag("HARD"));
     }
 }

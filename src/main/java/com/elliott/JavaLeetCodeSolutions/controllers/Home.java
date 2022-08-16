@@ -5,6 +5,7 @@ import com.elliott.JavaLeetCodeSolutions.models.Filters;
 import com.elliott.JavaLeetCodeSolutions.models.Tag;
 import com.elliott.JavaLeetCodeSolutions.repositories.TagRepository;
 import com.elliott.JavaLeetCodeSolutions.services.BlogPostService;
+import com.elliott.JavaLeetCodeSolutions.services.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class Home {
     private BlogPostService blogPostService;
 
     @Autowired
-    private TagRepository tagRepository;
+    private TagService tagService;
 
 
     @GetMapping("/")
@@ -43,10 +44,11 @@ public class Home {
         return "leetCodeSolutions";
     }
 
-    //TODO: TEST THIS OUT
+
     @GetMapping("/leetCodeSolution/search")
-    public String getLeetCodeSolutionsByTitle(@RequestParam String title,Model model){
-        List<BlogPost> blogPosts = this.blogPostService.getAllByTitle(title);
+    public String getLeetCodeSolutionsByTitle(@RequestParam(required = false) String title,@RequestParam(required = false)  String filter,Model model){
+
+        List<BlogPost> blogPosts = this.blogPostService.getAllByTitleOrTag(title,filter);
 
         model.addAttribute("posts",blogPosts);
 
@@ -85,8 +87,7 @@ public class Home {
     }
 
     @GetMapping("/dataStructureTutorial/search")
-    public String getDataStructureByTitle(@RequestParam String title,Model model){
-
+    public String getDataStructureByTitle(@RequestParam String title, Model model){
         List<BlogPost> blogPosts = this.blogPostService.getAllByTitle(title);
 
         model.addAttribute("posts",blogPosts);
@@ -96,8 +97,7 @@ public class Home {
 
     @GetMapping("/admin/blogPost/create")
     public String createBlogPost(Model model){
-        List<Tag> allTags = this.tagRepository.findAll();
-        Tag[] intArray = new Tag[]{new Tag("EASY"),new Tag("MEDIUM"),new Tag("HARD") };
+        List<Tag> allTags = this.tagService.findAllTags();
         model.addAttribute("blogPost",new BlogPost());
         model.addAttribute("allTags",allTags);
 
@@ -107,11 +107,7 @@ public class Home {
 
     @PostMapping("/admin/blogPost/create")
     public String createBlogPostPost(@ModelAttribute BlogPost post){
-        System.out.println("IT IS BELOW");
-        System.out.println("IT IS BELOW");
-        System.out.println(post.getTags().isEmpty());
-        System.out.println("IT IS ABOVE");
-        System.out.println("IT IS ABOVE");
+
         this.blogPostService.saveBlogPost(post);
 
         return "home";

@@ -12,8 +12,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+//TODO: SWITCH ALL METHODS OVER TO DERIVED QUERY METHODS
 @Repository
-public interface BlogPostRepository extends JpaRepository<BlogPost,Long>, QueryByExampleExecutor<BlogPost> {
+public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
 
 
 
@@ -31,6 +32,10 @@ public interface BlogPostRepository extends JpaRepository<BlogPost,Long>, QueryB
 
     @Query(value = "SELECT * FROM blogPost WHERE blogPost.filter = :filter AND blogPost.title LIKE  :title ",nativeQuery = true)
     List<BlogPost> findBlogPostByTitleNFilter(@Param("title") String title,@Param("filter") String filter);
+
+
+    //DERIVED QUERY METHODS BELOW:
+
 
     List<BlogPost>findByTitleIgnoreCaseContaining(String title);
 

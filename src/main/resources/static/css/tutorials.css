@@ -23,13 +23,13 @@
     align-items:center;
     justify-content:center;
 
-
-
 }
+
 .tutorial-form input{
     height:40px;
     padding:5px;
     margin:0 5px;
+    cursor:pointer;
 }
 .input-title-filter{
     font-size:20px;
@@ -45,4 +45,23 @@
     padding:10px;
     border-radius:8px;
 }
+select{
+    height:40px;
+    padding:5px;
+    margin:0 5px;
+    background-color:#eee;
+}
 
+@media only screen and (max-width: 700px) {
+  .tutorial-form{
+    flex-direction:column;
+
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .tutorial-form input{
+      width:120px;
+  }
+
+}

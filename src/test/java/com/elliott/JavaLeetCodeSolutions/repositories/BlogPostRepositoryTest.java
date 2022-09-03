@@ -1,6 +1,7 @@
 package com.elliott.JavaLeetCodeSolutions.repositories;
 
 import com.elliott.JavaLeetCodeSolutions.models.BlogPost;
+import com.elliott.JavaLeetCodeSolutions.models.Series;
 import com.elliott.JavaLeetCodeSolutions.models.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -168,7 +169,26 @@ public class BlogPostRepositoryTest {
         //THEN
         assertThat(foundBlogs.size()).isEqualTo(1);
 
+    }
 
+
+    @Test
+    public void findBySeriesTest(){
+        //GIVEN
+        String EXPECTED_TITLE = "RECURSION";
+        String EXPECTED_SERIES_NAME="BOB";
+
+        Series series1 = new Series(EXPECTED_SERIES_NAME);
+        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
+        postOne.setSeries(series1);
+
+        //WHEN
+        underTest.save(postOne);
+        List<BlogPost> foundBlogPosts = underTest.findBySeries(series1);
+
+
+        //THEN
+        assertThat(foundBlogPosts.size()).isEqualTo(1);
 
 
     }

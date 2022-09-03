@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
 
+    //USERNAME AND PASSWORD
     @Value( "${admin.username}" )
     private String username;
     @Value( "${admin.password}" )
@@ -30,6 +31,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String...args) throws Exception {
+        //CREATING ADMIN USER
         String encryptedPassword = passwordEncoder.encode(password);
         User user = new User(username,encryptedPassword,null);
 

@@ -1,0 +1,21 @@
+.tutorial-form{
+
+    margin:0px auto;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    margin-top:120px;
+
+}
+
+.tutorial-form input{
+    height:40px;
+    padding:5px;
+    margin:0 5px;
+
+}
+.input-title-filter{
+    font-size:20px;
+}

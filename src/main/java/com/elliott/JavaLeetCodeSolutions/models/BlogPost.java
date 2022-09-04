@@ -26,9 +26,7 @@ public class BlogPost extends AbstractEntity{
             inverseJoinColumns = @JoinColumn(name="TAG_ID"))
     private Set<Tag> tags = new HashSet<>();
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn
-    private Series series;
+
 
 
 
@@ -61,9 +59,7 @@ public class BlogPost extends AbstractEntity{
         return this.dateCreated;
     }
     public Set<Tag> getTags(){return this.tags;}
-    public Series getSeries(){
-        return this.series;
-    }
+
 
 
     //SETTERS
@@ -82,9 +78,7 @@ public class BlogPost extends AbstractEntity{
     public void setTags(Set<Tag> tags){
         this.tags = tags;
     }
-    public void setSeries(Series series){
-        this.series = series;
-    }
+
 
     //UTILITY
     @Override

@@ -7,28 +7,31 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Authority extends AbstractEntity{
 
-    private String name;
+    private String title;
 
     @JoinColumn
     @ManyToOne
     private User user;
     public Authority(){}
-    public Authority(String name, User user){
-        this.name = name;
+    public Authority(String title, User user){
+        this.title = title;
         this.user = user;
+    }
+    public Authority(String title){
+        this.title = title;
     }
 
     //GETTERS
     public String getName(){
-        return this.name;
+        return this.title;
     }
     public User getUser(){
         return this.user;
     }
 
     //SETTERS
-    public void setName(String name){
-        this.name = name;
+    public void setName(String title){
+        this.title = title;
     }
     public void setUser(User user){
         this.user = user;

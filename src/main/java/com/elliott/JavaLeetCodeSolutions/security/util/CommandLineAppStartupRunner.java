@@ -3,6 +3,7 @@ package com.elliott.JavaLeetCodeSolutions.security.util;
 import com.elliott.JavaLeetCodeSolutions.models.Authority;
 import com.elliott.JavaLeetCodeSolutions.models.Tag;
 import com.elliott.JavaLeetCodeSolutions.models.User;
+import com.elliott.JavaLeetCodeSolutions.repositories.AuthorityRepository;
 import com.elliott.JavaLeetCodeSolutions.repositories.TagRepository;
 import com.elliott.JavaLeetCodeSolutions.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     UserRepository userRepository;
 
     @Autowired
+    AuthorityRepository authorityRepository;
+
+    @Autowired
     TagRepository tagRepository;
 
     @Autowired
@@ -37,6 +41,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 //        user.setEmail("MEATB@BALL.COM");
 
 //        this.userRepository.save(user);
+        this.authorityRepository.save(new Authority("ADMIN"));
+        this.authorityRepository.save(new Authority("READ"));
+        this.authorityRepository.save(new Authority("PAID"));
         this.tagRepository.save(new Tag("EASY"));
         this.tagRepository.save(new Tag("MEDIUM"));
         this.tagRepository.save(new Tag("HARD"));

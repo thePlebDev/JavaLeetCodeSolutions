@@ -2,6 +2,7 @@ package com.elliott.JavaLeetCodeSolutions.models;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -20,9 +21,9 @@ public class User extends AbstractEntity{
     private String password;
     @NotNull
     private String email;
-    private Boolean paided;
+    private Boolean paid;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
     private List<Authority> authorities = new ArrayList<>();
 
     public User(String username,String password,String email,Authority authority){
@@ -43,7 +44,7 @@ public class User extends AbstractEntity{
     public List<Authority> getAuthorities(){
         return this.authorities;
     }
-    public Boolean getPaided(){return this.paided;}
+    public Boolean getPaided(){return this.paid;}
     public String getEmail(){return this.email;}
 
     //SETTERS
@@ -56,7 +57,7 @@ public class User extends AbstractEntity{
     public void addAuthority(Authority auth){
         this.authorities.add(auth);
     }
-    public void setPaided(Boolean paided){this.paided = paided;}
+    public void setPaid(Boolean paid){this.paid = paid;}
     public void setEmail(String email){
         this.email = email;
     }

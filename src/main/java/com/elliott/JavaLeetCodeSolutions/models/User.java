@@ -25,9 +25,10 @@ public class User extends AbstractEntity{
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Authority> authorities = new ArrayList<>();
 
-    public User(String username,String password,Authority authority){
+    public User(String username,String password,String email,Authority authority){
         this.username = username;
         this.password = password;
+        this.email = email;
         this.authorities.add(authority);
     }
     public User(){}

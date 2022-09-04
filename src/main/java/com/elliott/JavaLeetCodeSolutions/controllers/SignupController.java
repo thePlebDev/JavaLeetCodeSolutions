@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/signup")
@@ -26,11 +27,17 @@ public class SignupController {
     }
 
     @PostMapping
-    public String signupSuccess(@Valid User user, BindingResult bindingResult){
+    public String signupSuccess(@Valid User user,String secondPassword, BindingResult bindingResult,Model model){
+
+
         if(bindingResult.hasErrors()){
             return "signup";
         }
-        signupService.signupUser(user);
+       Optional<String> message = signupService.signupUser(user,secondPassword);
+        if(message.isPresent()){
+            model.addAttribute("passwordError",message.get());
+            return "signup";
+        }
 
         return "signupSuccess";
     }

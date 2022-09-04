@@ -172,24 +172,24 @@ public class BlogPostRepositoryTest {
     }
 
 
-    @Test
-    public void findBySeriesTest(){
-        //GIVEN
-        String EXPECTED_TITLE = "RECURSION";
-        String EXPECTED_SERIES_NAME="BOB";
-
-        Series series1 = new Series(EXPECTED_SERIES_NAME);
-        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
-        postOne.setSeries(series1);
-
-        //WHEN
-        underTest.save(postOne);
-        List<BlogPost> foundBlogPosts = underTest.findBySeries(series1);
-
-
-        //THEN
-        assertThat(foundBlogPosts.size()).isEqualTo(1);
-
-
-    }
+//    @Test
+//    public void findBySeriesTest(){
+//        //GIVEN
+//        String EXPECTED_TITLE = "RECURSION";
+//        String EXPECTED_SERIES_NAME="BOB";
+//
+//        Series series1 = new Series(EXPECTED_SERIES_NAME);
+//        BlogPost postOne = new BlogPost(EXPECTED_TITLE,"body","EXPECTED_FILTER",new Date());
+//        postOne.setSeries(series1);
+//
+//        //WHEN
+//        underTest.save(postOne);
+//        List<BlogPost> foundBlogPosts = underTest.findBySeries(series1);
+//
+//
+//        //THEN
+//        assertThat(foundBlogPosts.size()).isEqualTo(1);
+//
+//
+//    }
 }

@@ -46,8 +46,8 @@ public interface BlogPostRepository extends JpaRepository<BlogPost,Long> {
     //SEARCH BY TAG OR TITLE
     List<BlogPost> findByTitleIgnoreCaseContainingOrTags(String title,Tag tag);
 
-    //FIND BY SERIES
-    List<BlogPost> findBySeries(Series series);
+//    //FIND BY SERIES
+//    List<BlogPost> findBySeries(Series series);
 
 
 

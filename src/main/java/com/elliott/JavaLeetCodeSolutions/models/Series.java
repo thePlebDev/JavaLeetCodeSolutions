@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-public class Series extends AbstractEntity{
 
-    @NaturalId
-    @Column(unique=true)
+public class Series{
+
+//    @NaturalId
+//    @Column(unique=true)
     private String title;
 
-    @OneToMany(mappedBy = "series")
-    private List<BlogPost> posts = new ArrayList<>();
+//    @OneToMany(mappedBy = "series")
+//    private List<BlogPost> posts = new ArrayList<>();
 
     public Series() {
     }
@@ -34,17 +34,17 @@ public class Series extends AbstractEntity{
         return this.title;
     }
 
-    public List<BlogPost> getPosts() {
-        return posts;
-    }
+//    public List<BlogPost> getPosts() {
+//        return posts;
+//    }
 
     //SETTERS
     public void setTitle(String title){
         this.title = title;
     }
-    public void addPost(BlogPost post){
-        this.posts.add(post);
-    }
+//    public void addPost(BlogPost post){
+//        this.posts.add(post);
+//    }
 
    @Override
    public int hashCode() {

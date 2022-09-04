@@ -32,10 +32,11 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Override
     public void run(String...args) throws Exception {
         //CREATING ADMIN USER
-        String encryptedPassword = passwordEncoder.encode(password);
-        User user = new User(username,encryptedPassword,null);
+//        String encryptedPassword = passwordEncoder.encode("123456789");
+//        User user = new User(username,encryptedPassword,null);
+//        user.setEmail("MEATB@BALL.COM");
 
-        this.userRepository.save(user);
+//        this.userRepository.save(user);
         this.tagRepository.save(new Tag("EASY"));
         this.tagRepository.save(new Tag("MEDIUM"));
         this.tagRepository.save(new Tag("HARD"));

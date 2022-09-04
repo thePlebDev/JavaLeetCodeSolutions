@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -15,6 +16,8 @@ public class UserRepositoryTest {
 
     @Autowired
     private UserRepository underTest;
+
+    @Autowired AuthorityRepository authRepository;
 
     @Test
     public void findUserByUsernameTest(){
@@ -47,4 +50,45 @@ public class UserRepositoryTest {
         //THEN
         assertThat(foundUser.isPresent()).isEqualTo(true);
     }
+
+    @Test
+    public void testingSaveAuthorityLogic(){
+        //GIVEN
+        String EXPECTED_EMAIL = "BOB@BOBMAIL.COM";
+        Authority authority = new Authority("READ");
+
+        User user = new User("BOB","another one",EXPECTED_EMAIL,authority);
+
+
+        //WHEN
+        underTest.save(user);
+        User foundUser = underTest.findByEmail(EXPECTED_EMAIL).get();
+
+
+
+        //THEN
+        assertThat(foundUser.getAuthorities().size()).isEqualTo(1);
+
+    }
+
+//    @Test
+//    public void findByAuthorityTest(){
+//        //GIVEN
+//        String EXPECTED_EMAIL = "BOB@BOBMAIL.COM";
+//        String EXPECTED_AUTH = "READ";
+//        Authority authority = new Authority(EXPECTED_AUTH);
+//
+//        User user = new User("BOB","another one",EXPECTED_EMAIL,authority);
+//
+//
+//        //WHEN
+//        underTest.save(user);
+//        Authority foundAuthority = authRepository.;
+//        List<User> foundUser = underTest.findByAuthority(authority);
+//
+//
+//
+//        //THEN
+//        assertThat(foundUser.size()).isEqualTo(1);
+//    }
 }

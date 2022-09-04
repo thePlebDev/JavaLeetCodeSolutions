@@ -1,5 +1,6 @@
 package com.elliott.JavaLeetCodeSolutions.security.services;
 
+import com.elliott.JavaLeetCodeSolutions.models.Authority;
 import com.elliott.JavaLeetCodeSolutions.models.User;
 import com.elliott.JavaLeetCodeSolutions.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,9 @@ public class SignupService {
         if(secondPassword.equals(oldPassword)){
             String encodedPassword = bCryptPasswordEncoder.encode(oldPassword);
             user.setPassword(encodedPassword);
+            Authority auth = new Authority("READ");
+            auth.setUser(user);
+            user.addAuthority(auth);
             userRepository.save(user);
             return Optional.empty();
         }else{

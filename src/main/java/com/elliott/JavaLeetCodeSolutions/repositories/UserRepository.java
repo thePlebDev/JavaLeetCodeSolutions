@@ -1,5 +1,6 @@
 package com.elliott.JavaLeetCodeSolutions.repositories;
 
+import com.elliott.JavaLeetCodeSolutions.models.Authority;
 import com.elliott.JavaLeetCodeSolutions.models.BlogPost;
 import com.elliott.JavaLeetCodeSolutions.models.Tag;
 import com.elliott.JavaLeetCodeSolutions.models.User;
@@ -18,4 +19,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
 
 
     Optional<User> findByEmail(String email);
+
+    //List<User> findByAuthority(Authority auth);
 }

@@ -79,19 +79,22 @@ public class UserRepositoryTest {
         Authority authority = new Authority(EXPECTED_AUTH);
 
         User user = new User("BOB","another one",EXPECTED_EMAIL,authority);
-
-
+        User user2 = new User("BOB","another one",EXPECTED_EMAIL,null);
 
         //WHEN
-        authority.setUser(user);
-        underTest.save(user);
-        Authority foundAuthority = authRepository.findByTitle(EXPECTED_AUTH);
+       Authority auth = this.authRepository.save(authority);
+       auth.addUser(user);
+       auth.addUser(user2);
 
+       underTest.save(user);
+       underTest.save(user2);
+
+        Authority foundAuthority = authRepository.findByTitle(EXPECTED_AUTH);
         List<User> foundUser = underTest.findByAuthorities(foundAuthority);
 
 
 
         //THEN
-        assertThat(foundUser.size()).isEqualTo(1);
+        assertThat(foundUser.size()).isEqualTo(2);
     }
 }

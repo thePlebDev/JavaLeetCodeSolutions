@@ -71,24 +71,30 @@ public class UserRepositoryTest {
 
     }
 
-//    @Test
-//    public void findByAuthorityTest(){
-//        //GIVEN
-//        String EXPECTED_EMAIL = "BOB@BOBMAIL.COM";
-//        String EXPECTED_AUTH = "READ";
-//        Authority authority = new Authority(EXPECTED_AUTH);
-//
-//        User user = new User("BOB","another one",EXPECTED_EMAIL,authority);
-//
-//
-//        //WHEN
-//        underTest.save(user);
-//        Authority foundAuthority = authRepository.;
-//        List<User> foundUser = underTest.findByAuthority(authority);
-//
-//
-//
-//        //THEN
-//        assertThat(foundUser.size()).isEqualTo(1);
-//    }
+    @Test
+    public void findByAuthorityTest(){
+        //GIVEN
+        String EXPECTED_EMAIL = "BOB@BOBMAIL.COM";
+        String EXPECTED_AUTH = "READ";
+        Authority authority = new Authority(EXPECTED_AUTH);
+
+        User user = new User("BOB","another one",EXPECTED_EMAIL,authority);
+        User user2 = new User("BOB","another one",EXPECTED_EMAIL,null);
+
+        //WHEN
+       Authority auth = this.authRepository.save(authority);
+       auth.addUser(user);
+       auth.addUser(user2);
+
+       underTest.save(user);
+       underTest.save(user2);
+
+        Authority foundAuthority = authRepository.findByTitle(EXPECTED_AUTH);
+        List<User> foundUser = underTest.findByAuthorities(foundAuthority);
+
+
+
+        //THEN
+        assertThat(foundUser.size()).isEqualTo(2);
+    }
 }

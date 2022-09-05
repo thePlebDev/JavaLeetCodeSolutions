@@ -2,20 +2,23 @@ package com.elliott.JavaLeetCodeSolutions.models;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Authority extends AbstractEntity{
 
     private String title;
 
-    @JoinColumn
-    @ManyToOne
-    private User user;
+    @ManyToMany(mappedBy = "authorities")
+    private Set<User> users = new HashSet<>();;
+
     public Authority(){}
     public Authority(String title, User user){
         this.title = title;
-        this.user = user;
+        this.users.add(user);
     }
     public Authority(String title){
         this.title = title;
@@ -25,8 +28,8 @@ public class Authority extends AbstractEntity{
     public String getName(){
         return this.title;
     }
-    public User getUser(){
-        return this.user;
+    public Set<User> getUser(){
+        return this.users;
     }
 
     //SETTERS
@@ -34,7 +37,41 @@ public class Authority extends AbstractEntity{
         this.title = title;
     }
     public void setUser(User user){
-        this.user = user;
+        this.users.add(user);
+    }
+
+
+    //UTILITY
+    public void addUser(User user){
+        this.users.add(user);
+        user.getAuthorities().add(this);
+    }
+
+    public void removeUser(User user){
+        this.users.remove(user);
+        user.getAuthorities().remove(this);
+    }
+
+    @Override
+    public int hashCode(){
+        return 13; // DOES THIS GIVE RISE TO COLLISIONS
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(getClass() != obj.getClass()){
+            return false;
+        }
+
+        Authority other = (Authority) obj;
+        return getId() != null && getId().equals(other.getId());
+
     }
 
 

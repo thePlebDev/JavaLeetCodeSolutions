@@ -22,7 +22,10 @@ public class User extends AbstractEntity{
     private String email;
     private Boolean paid;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="user_authority",
+                joinColumns = {@JoinColumn(name="fk_user")},
+                inverseJoinColumns = {@JoinColumn(name="fk_authority")})
     private Set<Authority> authorities = new HashSet<>();
 
 

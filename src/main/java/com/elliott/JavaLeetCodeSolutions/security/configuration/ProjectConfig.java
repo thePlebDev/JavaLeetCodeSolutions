@@ -32,7 +32,7 @@ public class ProjectConfig {
         http.formLogin();
         http.authenticationProvider(authenticationProvider());
         http.authorizeRequests()
-                .mvcMatchers("/admin/blogPost/create").authenticated();
+                .mvcMatchers("/admin/blogPost/create").hasAuthority("ADMIN");
 
 
         return http.build();

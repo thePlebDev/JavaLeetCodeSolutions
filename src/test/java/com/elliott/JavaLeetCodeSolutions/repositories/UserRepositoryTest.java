@@ -90,6 +90,7 @@ public class UserRepositoryTest {
        underTest.save(user2);
 
         Authority foundAuthority = authRepository.findByTitle(EXPECTED_AUTH);
+
         List<User> foundUser = underTest.findByAuthorities(foundAuthority);
 
 

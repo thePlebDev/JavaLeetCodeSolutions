@@ -54,7 +54,7 @@ public class Authority extends AbstractEntity{
 
     @Override
     public int hashCode(){
-        return 13; // DOES THIS GIVE RISE TO COLLISIONS
+        return getClass().hashCode();
     }
 
     @Override

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>LeetCodeJava</title>
+    <meta name="description" content="Data structures and LeetCode in Java" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/home.css" />
+    <link rel="stylesheet" href="/css/subscribeForm.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/javascript/subscribe.js" defer></script>
+
+</head>
+
+<body>
+<header>
+    <nav>
+        <a href="/">
+            <h1 class="nav-header-mobile">J-L-C-S</h1>
+            <h1 class="nav-header-web">Java LeetCode Solutions</h1>
+        </a>
+
+        <div class="nav-container">
+            <a href="/dataStructureTutorial">
+                <h3 class="nav-link">DSA</h3>
+            </a>
+            <a href="/leetCodeSolution">
+                <h3 class="nav-link">LeetCode</h3>
+            </a>
+
+        </div>
+    </nav>
+</header>
+
+<body>
+<main>
+    <h1>Subscribe</h1>
+
+    <p>
+        Try the successful test card: <span>4242424242424242</span>.
+    </p>
+
+    <p>
+        Try the test card that requires SCA: <span>4000002500003155</span>.
+    </p>
+
+    <p>
+        Use any <i>future</i> expiry date, CVC, and 5 digit postal code.
+    </p>
+
+    <hr />
+
+    <form id="subscribe-form" th:action="@{/checkout/create-checkout-session}"  method="post">
+        <label>
+            Full name
+            <input type="text" id="name"  required/>
+        </label>
+        <label>
+            email
+            <input type="email" id="email"  required/>
+        </label>
+        <input type="hidden" name="priceId" th:value="price_1Lf524IUupCxt3YbbA3L0Meu" />
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+        <div id="card-element">
+            <!-- the card element will be mounted here -->
+        </div>
+
+        <button type="submit">
+            Subscribe
+        </button>
+
+
+        <div id="messages"></div>
+    </form>
+</main>
+
+
+</body>

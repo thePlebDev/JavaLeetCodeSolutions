@@ -21,6 +21,7 @@ public class User extends AbstractEntity{
     @NotNull
     private String email;
     private Boolean paid;
+    private String customerId;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="user_authority",
@@ -49,6 +50,7 @@ public class User extends AbstractEntity{
     }
     public Boolean getPaided(){return this.paid;}
     public String getEmail(){return this.email;}
+    public String getCustomerId(){return this.customerId;}
 
     //SETTERS
     public void setUsername(String username){
@@ -61,6 +63,7 @@ public class User extends AbstractEntity{
     public void setEmail(String email){
         this.email = email;
     }
+    public void setCustomerId(String customerId){this.customerId = customerId;}
 
 
     //UTILITY

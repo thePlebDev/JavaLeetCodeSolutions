@@ -27,6 +27,8 @@ public class UserService {
     }
 
 
+//TODO: THIS SHOULD RETURN THE CUSTOMER ID THAT WE ARE PASSING TO CREATE THE SUBSCRIPTION
+    //TODO: CLEAN UP THE REGISTER PAGE AND MAKE IT 100%
     public void saveUser(User user) throws StripeException {
         Customer customer = createCustomer(user.getUsername(), user.getEmail());
         user.setPassword(encryptPassword(user.getPassword()));

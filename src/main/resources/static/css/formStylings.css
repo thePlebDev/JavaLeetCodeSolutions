@@ -1,0 +1,35 @@
+.tutorial-form{
+
+    margin:0px auto;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    margin-top:80px;
+
+
+}
+
+.tutorial-form input{
+    height:40px;
+    padding:5px;
+    margin:10px 5px;
+    border-radius:4px;
+
+}
+.input-title-filter{
+    font-size:20px;
+
+}
+.page-title{
+    text-align:center;
+    margin-top:20px;
+
+}
+.submit-button{
+    border-radius:4px;
+    font-size:20px;
+    padding:4px 16px;
+    cursor:pointer;
+}

@@ -2,6 +2,8 @@ package com.elliott.JavaLeetCodeSolutions.models;
 
 
 
+import com.elliott.JavaLeetCodeSolutions.util.customValidators.Length;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -17,10 +19,11 @@ public class User extends AbstractEntity{
     @NotNull
     private String username;
     @NotNull
+    @Length
     private String password;
     @NotNull
     private String email;
-    private Boolean paid;
+
     private String customerId;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -48,7 +51,6 @@ public class User extends AbstractEntity{
     public Set<Authority> getAuthorities(){
         return this.authorities;
     }
-    public Boolean getPaided(){return this.paid;}
     public String getEmail(){return this.email;}
     public String getCustomerId(){return this.customerId;}
 
@@ -59,7 +61,6 @@ public class User extends AbstractEntity{
     public void setPassword(String password){
         this.password = password;
     }
-    public void setPaid(Boolean paid){this.paid = paid;}
     public void setEmail(String email){
         this.email = email;
     }

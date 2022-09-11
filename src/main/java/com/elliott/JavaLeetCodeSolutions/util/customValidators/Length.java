@@ -21,6 +21,8 @@ public @interface Length {
 
     String message() default "message";
 
+    int min() default 0;
+
     Class<?>[] groups() default { };
 
     Class<? extends Payload>[] payload() default { };

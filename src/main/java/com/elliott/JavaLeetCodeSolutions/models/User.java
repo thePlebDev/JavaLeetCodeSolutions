@@ -19,7 +19,7 @@ public class User extends AbstractEntity{
     @NotNull
     private String username;
     @NotNull
-    @Length
+    @Length(message = "Password too short")
     private String password;
     @NotNull
     private String email;

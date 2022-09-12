@@ -46,14 +46,14 @@
 <form id="signup-form" th:action="@{/checkout/register}" th:object="${user}" class="tutorial-form" method="post">
     <label>
 
-        <input id="email" type="email" name="email" placeholder="Email" class="input-title-filter" th:field="*{email}" value="bob@bobmail.com"  required />
+        <input id="email" type="email" name="email"  class="input-title-filter" th:field="*{email}" value="bob@bobmail.com"   />
     </label>
 
     <label>
 
-        <input id="username" type="text" name="username" placeholder="Username" class="input-title-filter" th:field="*{username}" value="bob"  required />
+        <input id="username" type="text" name="username"  class="input-title-filter" th:field="*{username}" value="bob"   />
     </label>
-    <p th:text="${#fields.hasErrors('password')}? 'password too short': ''" th:errors="*{password}"></p>
+    <p th:text="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
     <label>
         <input id="password" type="password" name="password" placeholder="Password" class="input-title-filter" th:field="*{password}"  required />
     </label>

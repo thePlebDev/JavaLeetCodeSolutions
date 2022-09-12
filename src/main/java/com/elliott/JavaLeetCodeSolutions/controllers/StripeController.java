@@ -39,7 +39,12 @@ public class StripeController {
 
     @GetMapping("subscribe")
     public String subscribe(){
-
+            new User("bob","bob","bob",null);
+        return "subscribe";
+    }
+    @GetMapping("/test")
+    public String test(){
+        new User("bob","bob","bob",null);
         return "subscribe";
     }
     @GetMapping("/success")
@@ -55,16 +60,24 @@ public class StripeController {
         model.addAttribute("user",new User());
         return "register";
     }
+
+
+
+
+
+
     @PostMapping("/register")
     public String registerPost(@Valid User user, BindingResult bindingResult) throws StripeException {
 
-        if(bindingResult.hasErrors()){
-            return "register";
-        }
-       //this.userService.saveUser(user);
+        bindingResult.hasErrors();
+        //this.userService.saveUser(user);
 
         return "register";
     }
+
+
+
+
 
 
     @PostMapping("/create-checkout-session")

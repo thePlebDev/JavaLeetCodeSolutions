@@ -12,18 +12,23 @@ import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-//@Repeatable(List.class) todo: find out what List.class does
+/**
+ * The annotated element must be greater than 0 and less than 30.
+ * Accepts only Strings.
+ */
 @Target({FIELD,METHOD,PARAMETER,ANNOTATION_TYPE,TYPE_USE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = LengthValidator.class)
 @Documented
+@Constraint(validatedBy = LengthValidator.class)
 public @interface Length {
 
-    String message() default "message";
+    String message() default "password is too short";
 
     int min() default 0;
 
-    Class<?>[] groups() default { };
+    int max() default 30;
+
+    Class<?>[] groups() default { }; //so apparently I need this
 
     Class<? extends Payload>[] payload() default { };
 }

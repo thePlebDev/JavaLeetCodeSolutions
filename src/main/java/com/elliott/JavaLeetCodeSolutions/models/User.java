@@ -3,6 +3,7 @@ package com.elliott.JavaLeetCodeSolutions.models;
 
 
 import com.elliott.JavaLeetCodeSolutions.util.customValidators.Length;
+import com.elliott.JavaLeetCodeSolutions.util.customValidators.SizeTwo;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -19,7 +20,7 @@ public class User extends AbstractEntity{
     @NotNull
     private String username;
     @NotNull
-    @Length(message = "Password too short")
+    @SizeTwo(min = 99,max= 1000, message = "MEATBALL")
     private String password;
     @NotNull
     private String email;
